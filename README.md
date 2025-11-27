@@ -1,6 +1,6 @@
-# Universal Proxy
+# EU Proxy
 
-Simple nginx reverse proxy for requests from Bulgarian IP.
+Lightweight nginx reverse proxy for routing requests through an EU-based server.
 
 ## Usage
 
@@ -8,9 +8,20 @@ Pass the target URL in the `X-Proxy-Target` header:
 
 ```bash
 curl -X POST https://your-proxy-domain/ \
-  -H "X-Proxy-Target: https://api.speedy.bg/v1/client/contract/" \
+  -H "X-Proxy-Target: https://api.example.com/endpoint" \
   -H "Content-Type: application/json" \
-  -d '{"userName": "...", "password": "..."}'
+  -d '{"key": "value"}'
 ```
 
-Works with any target URL - just set the header.
+Works with any target URL.
+
+## Deploy
+
+Deploy via Docker:
+
+```bash
+docker build -t eu-proxy .
+docker run -p 8080:80 eu-proxy
+```
+
+Or deploy to any container platform (Coolify, Railway, Fly.io, etc.).
